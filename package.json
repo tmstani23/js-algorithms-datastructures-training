@@ -1,0 +1,19 @@
+{
+  "name": "js-algorithms-datastructures-training",
+  "version": "1.0.0",
+  "description": "A project for learning and training js fundamentals.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmstani23/js-algorithms-datastructures-training.git"
+  },
+  "author": "Timothy Stanislav",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tmstani23/js-algorithms-datastructures-training/issues"
+  },
+  "homepage": "https://github.com/tmstani23/js-algorithms-datastructures-training#readme"
+}
