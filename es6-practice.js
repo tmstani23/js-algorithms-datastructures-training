@@ -41,4 +41,41 @@ function freezeObj(changeVal) {
     return MATH_CONSTANTS.PI;
   }
 const PI = freezeObj(150);
-  
+
+//Function using demonstrating how arrow functions can be used to chain higher order functions
+const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+const squareList = (arr) => {
+  "use strict";
+  //Array is filtered to include only integers
+  const squaredIntegers = arr.filter((number) => Number.isInteger(number) && number > 0) 
+    //Remaining integers are multiplied by their exponent
+    .map((int) => Math.pow(int, 2))    
+  return squaredIntegers;
+};
+// Final array is sorted to include only positive integers squared
+const squaredIntegers = squareList(realNumberArray);
+console.log(squaredIntegers);
+
+//Using default parameters within a function
+const increment = (function() {
+  "use strict";
+  //If a value isn't passed in the value is set to 1
+  return function increment(number, value = 1) {
+    //If a value isn't passed in the number is incremented by the default of 1
+    return number + value;
+  };
+})();
+console.log(increment(5, 2)); // returns 7
+console.log(increment(5)); // returns 6
+
+//Demonstrating using Rest Operator with function parameters 
+const sum = (function() {
+  "use strict";
+  //Here rest operator is used to transform all parameters into an array of parameters called args
+  return function sum(...args) {
+    //Reduce method is used on the arguments to sum each argument with the next in a series until the sum of arguments is attained
+      //The 0 value is the intial value of the reduce.
+    return args.reduce((a, b) => a + b, 0);
+  };
+})();
+console.log(sum(1, 2, 3) + " sum or args"); // 6
