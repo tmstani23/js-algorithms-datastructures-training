@@ -3,7 +3,7 @@ function printManyTimes(str) {
     //const is used when a variable will not need to be re-assigned
     const SENTENCE = str + " is cool!";
     // let is used when variable needs to be re-assigned.
-    for(let i = 0; i < str.length; i+=2) {
+    for(let i = 0; i < str.length; i+=3) {
         console.log(SENTENCE);
     }
   }
@@ -19,7 +19,7 @@ function editInPlace() {
   s[1] = 5;
   s[2] = 7
 
-  return console.log(s);
+  return console.log(s, "variable immutability with const");
 }
 editInPlace();
 
@@ -36,7 +36,7 @@ function freezeObj(changeVal) {
     try {
       MATH_CONSTANTS.PI = changeVal;
     } catch( ex ) {
-      console.log(ex);
+      console.log(ex, "cannot re-assign immuntable/frozen object");
     }
     return MATH_CONSTANTS.PI;
   }
@@ -54,7 +54,7 @@ const squareList = (arr) => {
 };
 // Final array is sorted to include only positive integers squared
 const squaredIntegers = squareList(realNumberArray);
-console.log(squaredIntegers);
+console.log(squaredIntegers, "chaining high order functions with arrow functions");
 
 //Using default parameters within a function
 const increment = (function() {
@@ -66,7 +66,7 @@ const increment = (function() {
   };
 })();
 console.log(increment(5, 2)); // returns 7
-console.log(increment(5)); // returns 6
+console.log(increment(5) + " default parameters"); // returns 6
 
 //Demonstrating using Rest Operator with function parameters 
 const sum = (function() {
@@ -78,7 +78,7 @@ const sum = (function() {
     return args.reduce((a, b) => a + b, 0);
   };
 })();
-console.log(sum(1, 2, 3) + " sum or args"); // 6
+console.log(sum(1, 2, 3) + " sum of args"); // 6
 
 
 //Demonstration of using object destructuring to re-assign a variable
@@ -95,4 +95,93 @@ function getTempOfTmrw(avgTemperatures) {
   return tempOfTomorrow;
 }
 
-console.log(getTempOfTmrw(AVG_TEMPERATURES)); // should be 79
+console.log(getTempOfTmrw(AVG_TEMPERATURES) + " Object destructuring and variable re-assignment."); // should be 79
+
+
+//Using object destructuring for nested objects to re-assign variables
+const LOCAL_FORECAST = {
+  today: { min: 72, max: 83 },
+  tomorrow: { min: 73.3, max: 84.6 }
+};
+
+function getMaxOfTmrw(forecast) {
+  "use strict";
+  // Here the tomorrow value object is extracted then the max value is assigned 
+    // to new variable maxOfTomorrow.
+  const {tomorrow: {max: maxOfTomorrow}} = forecast; // change this line
+  return maxOfTomorrow;
+}
+
+console.log(getMaxOfTmrw(LOCAL_FORECAST)+" Nested object destructuring"); // should be 84.6
+
+//Using destructuring to re-assign values in an array
+let a = 8, b = 6;
+(() => {
+  "use strict";
+  //Here the variables a and b are assigned to an array
+  // The array is then destructured reversing the values
+  [b, a] = [a, b]
+})();
+console.log(a); // should be 6
+console.log(b, " Destructuring an array"); // should be 8
+
+
+// Using array destructuring and spread operator to return a sub array
+const source = [1,2,3,4,5,6,7,8,9,10];
+function removeFirstTwo(list) {
+  "use strict";
+  // Here the first two values of the source array are destructured to variables a,b
+  // The rest of the source array is spread into a new array containing the remaining values
+    // Note: spread operator cannot be used to catch a subarray that leaves out the last 
+    // element of the initial array
+  const [a,b, ...arr] = list;
+  console.log(a, b, " New variables a,b");
+  return arr;
+}
+const arr = removeFirstTwo(source);
+console.log(arr, " Using array destructuring and spread operator"); // should be [3,4,5,6,7,8,9,10]
+console.log(source); // should be [1,2,3,4,5,6,7,8,9,10];
+
+
+// Using destructuring on arguments passed into a function
+const stats = {
+  max: 56.78,
+  standard_deviation: 4.34,
+  median: 34.54,
+  mode: 23.87,
+  min: -0.75,
+  average: 35.85
+};
+const half = (function() {
+  "use strict";
+
+  //Here the stats object is destructured to only its max and min values
+  return function half({max, min}) {
+    
+    return (max + min) / 2.0;
+  };
+  //The stats object is passed into the half function and only the max, min values are copied
+
+})();
+//console.log(stats); // should be object
+console.log(half(stats)); // should be 28.015
+
+//Function demonstrating using template literals and es6 instring variables
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["id-blacklist", "no-dup-keys"]
+};
+function makeList(arr) {
+  "use strict";
+
+  //Here a string is returned that preserves spacing and includes the three failure results as li elements within an array
+  const resultDisplayArray = 
+  [`<li class="text-warning">${arr[0]}</li>`,
+   `<li class="text-warning">${arr[1]}</li>`, 
+   `<li class="text-warning">${arr[2]}</li>`
+  ];
+
+  return resultDisplayArray;
+}
+console.log(makeList(result.failure, " String template literals"));
