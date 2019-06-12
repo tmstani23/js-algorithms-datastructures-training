@@ -185,3 +185,39 @@ function makeList(arr) {
   return resultDisplayArray;
 }
 console.log(makeList(result.failure, " String template literals"));
+
+// Simple fields with object literals
+// Function parameters are concise and automatically assigned as object properties and values
+// Instead of assigning the object as {name: name, age:age, gender:gender}
+const createPerson = (name, age, gender) => ({name,age,gender})
+
+console.log(createPerson("Zodiac Hasbro", 56, "male"), " object literals and simple fields"); // returns a proper object
+
+// Assigning functions inside an object more concise syntax
+const bicycle = {
+  gear: 2,
+  // Here the function is defined using es6 syntax
+  setGear(newGear) {
+    return this.gear = newGear;
+  }
+};
+// change code above this line
+bicycle.setGear(3);
+console.log(bicycle.gear, "defining functions inside an object es6");
+
+
+//Demonstrating creating a class type function and how to setup a constructor in es6
+function makeClass() {
+  "use strict";
+  /* Here the class is instantiated and the constructor can be passed a property name */
+  class Vegetable {
+    constructor(name) {
+      this.name = name;
+    }
+  }
+  return Vegetable;
+}
+const Vegetable = makeClass();
+// Here a new Vegetable class object is created and the name carrot is instantiated in the object.
+const carrot = new Vegetable('carrot');
+console.log(carrot.name, "Classes and Constructors in es6"); // => should be 'carrot'
