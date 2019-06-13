@@ -221,3 +221,30 @@ const Vegetable = makeClass();
 // Here a new Vegetable class object is created and the name carrot is instantiated in the object.
 const carrot = new Vegetable('carrot');
 console.log(carrot.name, "Classes and Constructors in es6"); // => should be 'carrot'
+
+//Demonstrating using getter and setter methods to update temperature values and abstract implementation details away from the consumer
+function makeClass() {
+  "use strict";
+  /* Here the class and temperature are initialized */
+  class Thermostat {
+    constructor(temp) {
+      this.currentTemperature = temp;
+    }
+    //Getter method returns the current temp
+    get temperature() {
+      return this.currentTemperature
+    }
+    //Set method allows receiving a new temperature as input and updating the current temp
+    set temperature(updatedTemp) {
+      this.currentTemperature = updatedTemp;
+    }
+  }
+  return Thermostat;
+}
+const Thermostat = makeClass();
+const thermos = new Thermostat(76); // setting in Fahrenheit scale
+console.log(thermos.temperature, " getters setters, temp at initialization")
+let temp = thermos.temperature;
+thermos.temperature = 26;
+temp = thermos.temperature; // 26 in C
+console.log(temp, " getters setters, temp after using setter to update")
