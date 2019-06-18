@@ -59,3 +59,22 @@ let blindSample = "3 blind mice.";
 let negateReg = /[^0-9aeiou]/gi; // Matches all characters that aren't a number or vowel.
 let negateResult = blindSample.match(negateReg);
 console.log(negateResult, " Negative results of a pattern");
+
+//Matching characters that occur one or more times
+let difficultSpelling = "Mississippi";
+let repeatRegex = /ss+/gi; // Change this line
+let repeatResult = difficultSpelling.match(repeatRegex);
+console.log(repeatResult, "Matching chars that occur one or more times.")
+
+//Matching characters that occur 0 or more times
+let chewieQuote = "Aaaaaaaaaaaaaaaarrrbgh!";
+let chewieRegex = /Aa*a/; // Will match Aa and repeats of "a"
+let chewieResult = chewieQuote.match(chewieRegex);
+console.log(chewieResult, " Matching chars that occur 0 or more times");
+
+//Matching the smallest possible part of a pattern (lazy matching)
+let text = "<hhh1111>Winter is coming</h1><h1>";
+// Return only the <h1> tag
+let winterRegex = /<h*?1>/; //"*"" matches 0 or more occurances of "h" and '?' means match only the smallest part of the string that matches
+let winterResult = text.match(winterRegex);
+console.log(winterResult, "Lazy matching smallest possible part of a pattern in the string")
