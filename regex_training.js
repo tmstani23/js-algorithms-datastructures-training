@@ -78,3 +78,48 @@ let text = "<hhh1111>Winter is coming</h1><h1>";
 let winterRegex = /<h*?1>/; //"*"" matches 0 or more occurances of "h" and '?' means match only the smallest part of the string that matches
 let winterResult = text.match(winterRegex);
 console.log(winterResult, "Lazy matching smallest possible part of a pattern in the string")
+
+// Matching patterns at the beginning of a string
+let rickyAndCal = "Cal and Ricky both like racing.";
+let calRegex = /^Cal/; // "^" symbol will match Cal if it is at the beginning of the string."
+let calResult = calRegex.test(rickyAndCal);
+console.log(calResult, " Matching pattern at beginning of a string");
+
+//Matching pattern at the end of a string
+let caboose = "The last car on a train is the caboose";
+let lastRegex = /caboose$/; //$ matches pattern to end of the string
+let cabooseResult = lastRegex.test(caboose);
+console.log(cabooseResult, " Matching pattern at end of string");
+
+let alphaSample = "The five boxing wizards jump quickly.";
+let alphabetRegexV2 = /\w/g; // '\w' matches alphanumeric characters and is = to [A-Za-z0-9_]
+let alphaResult = alphaSample.match(alphabetRegexV2).length;
+console.log(alphaResult, "using \w to match alpha numeric characters in a string.");
+
+// Matching anything that is not alphanumeric
+let nonAlphaSample = "The five boxing wizards jump quickly.";
+let nonAlphabetRegex = /\W/g; // '\W' matches anything that is not alphanumeric characters and is = to [^A-Za-z0-9_]
+let nonAlphaResult = nonAlphaSample.match(nonAlphabetRegex).length;
+console.log(nonAlphaResult, " Matching anything that is not alphanumeric and underscore")
+
+// Matching digits or numbers only
+let numString = "Your sandwich will be $5.00";
+let numRegex = /\d/g; // '\d' symbol matches only numbers
+let numResult = numString.match(numRegex).length;
+console.log(numResult, "Amount of numbers in the string")
+
+// Matching non-digit characters 0-9
+let nonnumString = "Your sandwich will be $5.00";
+let noNumRegex = /\D/g; // '\d' symbol matches anything that isn't a number 0-9
+let nonNumResult = numString.match(noNumRegex).length;
+console.log(nonNumResult, "Matches characters that aren't a number 0-9");
+
+//Match usernames that follow this criteria:
+// 1) The only numbers in the username have to be at the end. There can be zero or more of them at the end.
+// 2) Username letters can be lowercase and uppercase.
+// 3) Usernames have to be at least two characters long. A two-letter username can only use alphabet letter characters.
+let username = "JackOfAllTrades007";
+// "^[a-z]{2,}" matches 2 or more alphabet characters at the beginning of the string.  "\d*$" matches 0 or more numbers at the end of the string.  Case is ignored.
+let userCheck = /^[a-z]{2,}\d*$/i;
+let userResult = userCheck.test(username);
+console.log(userResult, `Username: ${username}`, " Match usernames that follow specific criteria")
