@@ -110,7 +110,7 @@ console.log(numResult, "Amount of numbers in the string")
 
 // Matching non-digit characters 0-9
 let nonnumString = "Your sandwich will be $5.00";
-let noNumRegex = /\D/g; // '\d' symbol matches anything that isn't a number 0-9
+let noNumRegex = /\D/g; // '\D' symbol matches anything that isn't a number 0-9
 let nonNumResult = numString.match(noNumRegex).length;
 console.log(nonNumResult, "Matches characters that aren't a number 0-9");
 
@@ -123,3 +123,49 @@ let username = "JackOfAllTrades007";
 let userCheck = /^[a-z]{2,}\d*$/i;
 let userResult = userCheck.test(username);
 console.log(userResult, `Username: ${username}`, " Match usernames that follow specific criteria")
+
+//Matching whitespace and other hidden characters
+let sample = "Whitespace is important in separating words";
+// '\s' matches white space as well as other characters, similar to the character class [ \r\t\f\n\v]
+let countWhiteSpace = /\s/g; 
+let whiteResult = sample.match(countWhiteSpace);
+console.log(whiteResult, "Matching whitespace chars")
+
+//Matching all non-whitespace characters
+let nonWhitespace = "Whitespace is important in separating words";
+//This pattern will not match whitespace, carriage return, tab, form feed, and new line characters. You can think of it being similar to the character class [^ \r\t\f\n\v]
+let countNonWhiteSpace = /\S/g; 
+let noWhiteResult = nonWhitespace.match(countNonWhiteSpace);
+console.log(noWhiteResult, "Matching non-whitespace characters")
+
+//Match a certain range of repeating characters
+let ohStr = "Ohhh no";
+let ohRegex = /Oh{3,6}\sno/; // Match between 3 and 6 repeating h's.  Also matches "Ohhhhhh no".
+let ohResult = ohRegex.test(ohStr);
+console.log(ohResult, "Matching specific range of repeating characters.")
+
+//Match repeating characters by setting a min limit but no upper bounds
+let haStr = "Hazzzzah";
+let haRegex = /haz{4,}ah/i; // Matches at least 4 repeating z's
+let haResult = haRegex.test(haStr);
+console.log(haResult, "Matching min limit of repeating chars.")
+
+// Matching an exact number of repeating characters
+let timStr = "Timmmmber";
+let timRegex = /Tim{4}ber/; // Matches exactly 4 repeating "m's".
+let timResult = timRegex.test(timStr);
+console.log(timResult, "Matches exactly 4 repeating 'm' characters.")
+
+// Using regex to check for all or none match in a pattern
+let favWord = "favorite";
+let favRegex = /favou?rite/; // Match regardless if the "u" exists or doesn't exist
+let favResult = favRegex.test(favWord);
+console.log(favResult, "Matching with optional characters.");
+
+// Using 'lookahead' matching to check if a pattern matches
+let sampleWord = "astronaut22";
+// (?=\w{5,}) looks ahead in the string and matches any characters that are at least 5 letters long.
+// (?=\D*\d{2}) looks ahead and matches 0 or more repeating nondigit characters and matches only 2 digit characters.
+let pwRegex = /(?=\w{5,})(?=\D*\d{2})/; 
+let pwResult = pwRegex.test(sampleWord);
+console.log(pwResult, "Matches passwords that are greater than 5 characters long and have two consecutive digits.");
