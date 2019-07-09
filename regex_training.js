@@ -169,3 +169,22 @@ let sampleWord = "astronaut22";
 let pwRegex = /(?=\w{5,})(?=\D*\d{2})/; 
 let pwResult = pwRegex.test(sampleWord);
 console.log(pwResult, "Matches passwords that are greater than 5 characters long and have two consecutive digits.");
+
+// Reuse patterns using capture groups
+let repeatNum = "42 42 42";
+let reRegex = /^(\d+)\s\1\s\1$/; // The \1 represents the capture group pattern in parenthesis
+let reResult = reRegex.test(repeatNum);
+
+// Using regex to search and replace
+let huhText = "This sandwich is good.";
+let fixRegex = /good/;
+let replaceText = "okey-dokey"; 
+// The first argument is the regex to search for and the second is the pattern to replace it with.
+let replaceResult = huhText.replace(fixRegex, replaceText);
+console.log("search and replace a pattern.", replaceResult)
+
+//Remove whitespace from beginning and end of a string with regex
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s+|\s+$/g; //Matches repeating whitespace chars at the beginning or at the end.
+let wsResult = hello.replace(wsRegex,""); //Replaces matching pattern with no space.
+console.log("removing whitespace from string", wsResult);
