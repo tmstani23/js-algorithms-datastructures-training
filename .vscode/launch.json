@@ -10,7 +10,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\regex_training.js"
+            "program": "${workspaceFolder}\\debug_training.js"
         }
     ]
 }
