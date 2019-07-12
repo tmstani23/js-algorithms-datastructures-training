@@ -80,4 +80,17 @@ function zeroArray(m, n) {
 }
 let matrix = zeroArray(3, 2);
 console.table(matrix);
+
+//Preventing infinite loops with a valid terminal condition
+function myFunc() {
+  // The below loop condition will never be met and this will result in an infinite loop
+  // for (let i = 1; i != 4; i += 2) {
+  //   console.log("Still going!");
+  // }
+  // Here the i value is set to <= 4 and the loop will now end
+  for (let i = 1; i <= 4; i += 2) {
+    if (i = 4) console.log("Loop ended!");
+  }
+}
+myFunc();
   
