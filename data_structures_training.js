@@ -26,3 +26,28 @@ function popShift(arr) {
     return [shifted, popped];
 }
 console.log(popShift(['challenge', 'is', 'not', 'complete']));
+
+//Using splice to remove array elements beginning at an index
+function sumOfTen(arr) {
+  // Here 2 elements are removed beginning at index 1 (second element)
+  arr.splice(1,2)
+  // Sum the array elements
+  return arr.reduce((a, b) => a + b);
+}
+console.log("Removing array elements at an index location", sumOfTen([2, 5, 1, 5, 2, 1]));
+
+//Using splice to remove array elements and replace with new
+function htmlColorNames(arr) {
+  //Remove the first two elements in the array and replace
+  arr.splice(0,2,"DarkSalmon", 'BlanchedAlmond')
+  return arr;
+} 
+console.log("Using splice to remove and replace elements", htmlColorNames(['DarkGoldenRod', 'WhiteSmoke', 'LavenderBlush', 'PaleTurqoise', 'FireBrick']));
+
+//Using slice to extract array elements to a new array
+function forecast(arr) {
+  //Extract elements 2 and 3 (but not 4) to a new array
+  newArr = arr.slice(2,4)
+  return newArr;
+}
+console.log(forecast(['cold', 'rainy', 'warm', 'sunny', 'cool', 'thunderstorms']));
