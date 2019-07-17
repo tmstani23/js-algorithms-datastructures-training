@@ -91,23 +91,169 @@ function filteredArray(arr, elem) {
   return newArr;
 }
 
-// change code here to test different cases:
-//console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 3));
+
 console.log("Using loops to iterate through nested arrays", JSON.stringify(filteredArray([ ["trumpets", 2], ["flutes", 4], ["saxophones", 2] ], 2)))
 
-let nestedArray = [
-  // change code below this line
-  [
-    ['deep'],
+//Accessing nested arrays using bracket notation
+let nestedArray = [// first level
+  
+  [ //second level
+    ['deep'], //3rd level
     [
-      ['deeper'],
+      ['deeper'], //4th level
       [
         [
-          'deepest'
+          'deepest' //5th level
         ]
       ]
     ]
   ]
-  // change code above this line
 ];
-console.log(JSON.stringify(nestedArray[0]))
+//Access the value in the 5th level
+console.log('accessing nested arrays ', JSON.stringify(nestedArray[0][1][1][0][0]))
+
+
+//Demonstrating updating an object's properties and values
+let foods = {
+  apples: 25,
+  oranges: 32,
+  plums: 28
+};
+// Here foods object is updated with new properties and values;
+foods.bananas = 13;
+foods.grapes = 35;
+foods.strawberries = 27;
+
+console.log("updating object properties ", foods);
+
+
+//Updating nested object properties and values
+let userActivity = {
+  id: 23894201352,
+  date: 'January 1, 2017',
+  data: {
+    totalUsers: 51,
+    online: 42
+  }
+};
+//Bracket notation and dot notation can be used to access the nested data object
+userActivity['data'].online = 45
+
+console.log('updating nested object properties', JSON.stringify(userActivity));
+
+//Using bracket notation to access property names
+let fruits = {
+  apples: 25,
+  oranges: 32,
+  plums: 28,
+  bananas: 13,
+  grapes: 35,
+  strawberries: 27
+};
+//Check foods object for scanned item
+function checkInventory(scannedItem) {
+  // Bracket notation allows for dynamically checking an object property
+    //Note: dot notation wouldn't work as the input is a string and will result in undefined
+  return foods[scannedItem]
+}
+console.log("accessing properties with bracket notation", checkInventory("apples"));
+
+//Demonstrating checking if an object has a property
+let users = {
+  Alan: {
+    age: 27,
+    online: true
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: true
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+};
+
+//Checks if specific users exist in user object
+function isEveryoneHere(obj) {
+  let usersToCheck = ['Alan', 'Jeff', 'Sarah', 'Ryan'];
+  // If user doesn't exist in users object return false
+  for (let i = 0; i < usersToCheck.length; i++) {
+    // 'in' here checks if the property exists in the users object (similar to object.hasOwnProperty)
+    if (usersToCheck[i] in users === false) {
+      return false
+    }
+  }
+  // If all users exist in users object return true
+  return true;
+}
+console.log("Checking if all users exist in user object ", isEveryoneHere(users));
+
+//Using dot and bracket notation to check how many users are online
+let usersObj = {
+  Alan: {
+    age: 27,
+    online: false
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: false
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+};
+function countOnline(obj) {
+  // Check each user's online property and increment count if it is true
+  let count = 0;
+  for (let user in obj) {
+    obj[user].online === true ? count++ : false;
+  }
+  return count;
+}
+console.log("using dot and bracket notation to access nested object properties ", countOnline(usersObj));
+
+
+//Updating deeply nested arrays and objects within an object using bracket and dot notation
+let user = {
+  name: 'Kenneth',
+  age: 28,
+  data: {
+    username: 'kennethCodesAllDay',
+    joinDate: 'March 26, 2016',
+    organization: 'freeCodeCamp',
+    friends: [
+      'Sam',
+      'Kira',
+      'Tomo'
+    ],
+    location: {
+      city: 'San Francisco',
+      state: 'CA',
+      country: 'USA'
+    }
+  }
+};
+
+function addFriend(userObj, friend) {
+  // Add the new friend to the friends array within the user obj  
+  user['data'].friends.push(friend)
+  return user['data'].friends
+
+}
+function addLocation(locationObj, newCity) {
+  // Update the current location obj city property to the new city input 
+  user['data'].location['city'] = newCity
+  return user['data'].location['city']
+}
+console.log(addFriend(user, 'Pete'));
+console.log(addLocation(user, 'Minneapolis'))
