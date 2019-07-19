@@ -52,6 +52,23 @@ function forecast(arr) {
 }
 console.log(forecast(['cold', 'rainy', 'warm', 'sunny', 'cool', 'thunderstorms']));
 
+//Algorithm that takes 2 arrays and inserts the first array into the second at the provided index n
+function frankenSplice(arr1, arr2, n) {
+  //Copy the input arr2 using spread operator to avoid mutating arr2
+  let newArr2 = [...arr2]
+  //loop backwards through the arr1 array
+  for(let i = arr1.length - 1; i >= 0; i--) {
+    //insert arr1 elements into the copied array
+    newArr2.splice(n,0,arr1[i]);
+  }
+  
+  console.log('frakenslice', newArr2);
+  console.log(arr2);
+  return newArr2;
+}
+
+frankenSplice([1, 2, 3], [4, 5, 6], 1);
+
 //Using spread operator to copy all elements of an array into a new array
 function copyMachine(arr, num) {
   let newArr = [];
@@ -257,3 +274,4 @@ function addLocation(locationObj, newCity) {
 }
 console.log(addFriend(user, 'Pete'));
 console.log(addLocation(user, 'Minneapolis'))
+
