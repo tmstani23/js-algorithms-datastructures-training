@@ -12,24 +12,24 @@
 
 decToReal = (arr) => {
     let accumulator = 1
-    let result = arr.reverse()
-    .map((val, index) => {
-        index != 0 
-        ? accumulator = accumulator * 2
-        : accumulator = 1
-        
-        console.log(accumulator, index);
-        return val*accumulator;
-    })
-    .reduce((acc, val) => acc + val )
-    
+    //Create a copy of input array to avoid mutation
+    let result = [...arr]
+        .reverse()
+        .map((val, index) => {
+            index != 0 
+            ? accumulator = accumulator * 2
+            : accumulator = 1
+            return val*accumulator;
+        })
+        .reduce((acc, val) => acc + val )
     return console.log(result);
 
 }
-
+console.time('decSpeed')
 //decToReal([0,1,1,1]);
 //decToReal([0,1,1,0]);
 //decToReal([1,1,1,1]);
 //decToReal([1,0,1,1]);
 //decToReal([1,1,1,0]);
-decToReal([1,1,1,1,1,0])
+decToReal([1,1,1,0,1,1,0,1,1,0,0,1,1,1,1,0])
+console.timeEnd('decSpeed')
