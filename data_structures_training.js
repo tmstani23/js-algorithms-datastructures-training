@@ -63,7 +63,6 @@ function frankenSplice(arr1, arr2, n) {
   }
   
   console.log('frakenslice', newArr2);
-  console.log(arr2);
   return newArr2;
 }
 
