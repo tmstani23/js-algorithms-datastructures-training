@@ -72,6 +72,7 @@ function Animal() { }
 
 //Add an eat function to the animal prototype
 Animal.prototype.eat = () => console.log('nom, nom, nom');
+Animal.prototype.drink = () => console.log('sluuurp!');
 
 //Set both instances of animal to include the animal prototype
 Cat.prototype = Object.create(Animal.prototype);
@@ -85,6 +86,11 @@ Bear.prototype.constructor = Bear;
 Cat.prototype.meow = () => console.log("Meeooooooowww. meew");
 Bear.prototype.growl = () => console.log("RAWRRR");
 
+//Override the supertype Animals eat method for Cat
+    //All Cat's will now have a different eat method
+Cat.prototype.eat = () => console.log("crunch, crunch, lick, crunch");
+
+
 //Create new instances of each type of animal object
 let mimi = new Cat('Mimi');
 let blackBear = new Bear('Chuck');
@@ -96,4 +102,20 @@ blackBear.growl()
 mimi.eat()
 blackBear.eat();
 
+
+//Demonstrating overriding supertype methods for subtype
+function Bird() { }
+
+Bird.prototype.fly = function() { return "I am flying!"; };
+
+function Penguin() { }
+Penguin.prototype = Object.create(Bird.prototype);
+Penguin.prototype.constructor = Penguin;
+
+// Here the fly method is added to the penguin prototype 
+    //It overrides Bird's fly method.  Must have same method name to override
+Penguin.prototype.fly = () => "Alas, this is a flightless bird."; 
+
+let penguin = new Penguin();
+console.log("Overriding supertype prototype methods:", penguin.fly());
 
