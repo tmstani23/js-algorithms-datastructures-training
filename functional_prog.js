@@ -222,3 +222,71 @@ var new_s = s.myMap(function(item){
   return item * 2;
 });
 console.log(new_s);
+
+//Using filter and map to return a new object with extracted values
+var filteredList = watchList.map((iteratedObj) => {
+  //Title and rating are deconstructed from the current iterated object
+  let {Title, imdbRating} = iteratedObj;
+  // New obj is returned containing only the title and imdb rating
+  return {
+    title: Title,
+    rating: imdbRating
+  }
+}).filter((val) => {
+    val = parseInt(val.rating) // convert rating to a number
+    // add val to new array if it is >= 8.0
+    return val >= 8.0;
+  })
+console.log("Using map and filter to parse objects and return transformed objects that fit the criteria", JSON.stringify(filteredList));
+
+// Creating filter method from scratch to see how it functions
+var s = [23, 65, 98, 5];
+//Add new filter function to Array prototype
+Array.prototype.myFilter = function(callback){
+  var newArray = [];
+  // iterate through the array the filter method is called on
+  this.forEach((val) => {
+    // If the callback returns true on the passed in item add it to the new array
+    if (callback(val) === true) {
+      newArray.push(val)
+    }
+  })
+  console.log(newArray);
+  // Add your code above this line
+  return newArray;
+
+};
+//Calling the new function with passed in callback
+var new_s = s.myFilter(function(item){
+  // If item is odd return true
+  return item % 2 === 1;
+});
+
+//Demonstrating using slice to extract elements from an array.
+    // Slice does not mutate the array and can be used to return a copy
+function sliceArray(anim, beginSlice, endSlice) {
+  // slice input array from indices based on function parameters
+  let slicedArr = anim.slice(beginSlice, endSlice)
+  return slicedArr;
+}
+var inputAnim = ["Cat", "Dog", "Tiger", "Zebra", "Ant"];
+console.log("Demonstrating slice to avoid immutability", sliceArray( inputAnim, 1, 3));
+
+//More slicing
+function nonMutatingSplice(cities) {
+  // Start at index 0 and slice 3 items
+  return cities.slice(0,3)
+}
+var inputCities = ["Chicago", "Delhi", "Islamabad", "London", "Berlin"];
+nonMutatingSplice(inputCities);
+
+
+function nonMutatingConcat(original, attach) {
+  // concat joins two arrays from endpoint and beginning.  Doesn't mutate array
+  let concatedArr = original.concat(attach);
+  return concatedArr;
+  
+}
+var first = [1, 2, 3];
+var second = [4, 5];
+console.log(nonMutatingConcat(first, second));
