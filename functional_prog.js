@@ -290,3 +290,35 @@ function nonMutatingConcat(original, attach) {
 var first = [1, 2, 3];
 var second = [4, 5];
 console.log(nonMutatingConcat(first, second));
+
+
+//Using concat to add new array elements to the end of an array
+function nonMutatingPush(original, newItem) {
+  //Add new item array to the end of original array
+  return original.concat(newItem);
+}
+var firstArr = [1, 2, 3];
+var secondArr = [4, 5];
+// Concat won't mutate the first or second array
+console.log("Non-mutating push", firstArr, secondArr, JSON.stringify(nonMutatingPush(first, second)))
+
+var averageRating = watchList.filter((iterObj) => {
+  let {Director, imdbRating} = iterObj;
+  let returnArr = [];
+
+  if(Director == "Christopher Nolan") {
+    
+    //accumulator = 0;
+    let parsedRating = parseInt(imdbRating).toFixed(3)
+    returnArr.concat([parsedRating]);
+
+    //console.log(imdbRating)
+    //return parsedRating;
+  }
+  //console.log(JSON.stringify(accumulator));
+  return returnArr
+  
+})
+
+// Add your code above this line
+console.log("avgrating", JSON.stringify(averageRating)); 
