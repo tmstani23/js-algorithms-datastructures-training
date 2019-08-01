@@ -304,21 +304,28 @@ console.log("Non-mutating push", firstArr, secondArr, JSON.stringify(nonMutating
 
 var averageRating = watchList.filter((iterObj) => {
   let {Director, imdbRating} = iterObj;
-  let returnArr = [];
-
   if(Director == "Christopher Nolan") {
     
-    //accumulator = 0;
-    let parsedRating = parseInt(imdbRating).toFixed(3)
-    returnArr.concat([parsedRating]);
-
-    //console.log(imdbRating)
-    //return parsedRating;
+    return true
+    
   }
-  //console.log(JSON.stringify(accumulator));
-  return returnArr
-  
+  return false
 })
+// .reduce((total, iterObj, index) => {
+//   let {Director, imdbRating} = iterObj;
+//   let returnArr = [];
+//   let parsedRating = parseFloat(imdbRating)
 
+// //     returnArr.concat([parsedRating]);
+
+  
+//   let result = (parsedRating + total) / index;
+//   //console.log(parsedRating);
+//   //returnArr.push(result)
+//   return result;
+  
+// }, 0)
+
+console.log(typeof averageRating)
 // Add your code above this line
-console.log("avgrating", JSON.stringify(averageRating)); 
+console.log(JSON.stringify(averageRating)); 
