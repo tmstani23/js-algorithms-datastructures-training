@@ -302,30 +302,59 @@ var secondArr = [4, 5];
 // Concat won't mutate the first or second array
 console.log("Non-mutating push", firstArr, secondArr, JSON.stringify(nonMutatingPush(first, second)))
 
-var averageRating = watchList.filter((iterObj) => {
+
+//Using filter and reduce to get avg rating of movies without mutability
+var filteredWatchList = watchList.filter((iterObj) => {
+  //If director is CN include the object in the new array
   let {Director, imdbRating} = iterObj;
   if(Director == "Christopher Nolan") {
-    
     return true
-    
   }
   return false
 })
-// .reduce((total, iterObj, index) => {
-//   let {Director, imdbRating} = iterObj;
-//   let returnArr = [];
-//   let parsedRating = parseFloat(imdbRating)
 
-// //     returnArr.concat([parsedRating]);
+let averageRating = filteredWatchList.reduce((total, iterObj) => {
+  let {imdbRating} = iterObj;
+  let parsedRating = parseFloat(imdbRating)
+  //Add up all the ratings
+  let result = parsedRating + total;
 
+  return result;
   
-//   let result = (parsedRating + total) / index;
-//   //console.log(parsedRating);
-//   //returnArr.push(result)
-//   return result;
-  
-// }, 0)
+}, 0) / (watchList.length - 1) //Divide sum by number of ratings to get avg
 
-console.log(typeof averageRating)
-// Add your code above this line
-console.log(JSON.stringify(averageRating)); 
+console.log("Parse an object and return an avg using reduce", JSON.stringify(averageRating)); 
+
+
+let alphaArr = ["a", "d", "c", "a", "z", "g"]
+function alphabeticalOrder(arr) {
+  
+  return arr.sort((elem1, elem2) => {
+    return elem1 > elem2;
+  })
+  
+}
+alphabeticalOrder(alphaArr);
+console.log(alphaArr); //Original array is not mutated
+
+// Sort the array in descending order
+var globalArray = [5, 6, 3, 2, 9];
+function nonMutatingSort(arr) {
+  let globalArrCopy = []
+  //Copy the globalArray to avoid mutation
+  globalArrCopy = globalArrCopy.concat(globalArray);
+
+  return globalArrCopy.sort((elem1, elem2) => {
+    return elem1 - elem2;
+  })
+}
+console.log("Sorting an array without mutation", nonMutatingSort(globalArray));
+
+//Function to split a string by words and remove any punctuation or other chars.
+function splitify(str) {
+  // Add your code below this line
+  let alphaNumericStr = str.replace(/[^a-z0-9]/gmi, " ")
+  console.log(alphaNumericStr)
+  // Add your code above this line
+}
+splitify("Hello World,I-am code");
