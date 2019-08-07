@@ -352,9 +352,55 @@ console.log("Sorting an array without mutation", nonMutatingSort(globalArray));
 
 //Function to split a string by words and remove any punctuation or other chars.
 function splitify(str) {
-  // Add your code below this line
+  // Remove non-alpha numeric symbols
   let alphaNumericStr = str.replace(/[^a-z0-9]/gmi, " ")
-  console.log(alphaNumericStr)
+  // Split string by spaces
+  let finalStr = alphaNumericStr.split(" ")
+  return finalStr;
+  
+}
+console.log("Parsing strings without mutation:", splitify("Hello World,I-am code"));
+
+//Demonstrating parsing a string by delimiter without mutating original str
+function sentensify(str) {
+  // Convert the string to array and split each elem by any non-alphnumeric
+  let convertedStrToArr = str.split(/[^a-zA-Z0-9]/)
+  // Convert new array back to str split by spaces
+  let joinedStr = convertedStrToArr.join(" ");
+  
+  return joinedStr;
+
+}
+console.log("Parsing a str by delimiter:", sentensify("May-the-force-be-with-you"));
+
+
+// Performing complex transformations on a string without mutation
+var globalTitle = " Winter is  Coming";
+function urlSlug(title) {
+  //copy the string and set it to lowercase
+  let copiedStr = title.toLowerCase()
+    //Split the copied string by space characters into an array
+    .split(/\s+/)
+    //Filter the array to not include space elements
+    .filter((elem) => {
+      return elem == '' ? false : true
+  })
+    //join the new array into a string separated by -
+    .join('-');
+
+  console.log(copiedStr);
+  return copiedStr;
+}
+
+var winterComing = urlSlug(globalTitle); // Should be "winter-is-coming"
+
+
+function checkPositive(arr) {
+  // Add your code below this line
+  return arr.every((elem) => {
+    return elem > 0;
+  })
+  
   // Add your code above this line
 }
-splitify("Hello World,I-am code");
+checkPositive([1, 2, 3, -4, 5]);
