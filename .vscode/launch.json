@@ -10,7 +10,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\oO_fundamentals.js"
+            "program": "${workspaceFolder}\\functional_prog.js"
         }
     ]
 }
